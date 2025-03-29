@@ -14,17 +14,20 @@
         <h1>Sports & News Hub</h1>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">World News</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" onclick="fetchNews('sports')">Sports</a></li>
+                <li><a href="#" onclick="fetchNews('world')">World News</a></li>
+                <li><a href="#" id="toggle-dark-mode">🌙 Dark Mode</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="news-container">
-        <h2>Loading latest news...</h2>
-    </section>
+    <div class="container">
+        <input type="text" id="searchBar" placeholder="Search news..." onkeyup="searchNews()">
+        
+        <section id="news-container">
+            <h2>Loading latest news...</h2>
+        </section>
+    </div>
 
     <footer>
         <p>© 2025 Sports & News Hub | Powered by GitHub Pages</p>
@@ -34,3 +37,4 @@
 
 </body>
 </html>
+
