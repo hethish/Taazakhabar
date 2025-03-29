@@ -3,38 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Latest Sports and World News Updates">
-    <meta name="keywords" content="sports news, world news, cricket, football, updates">
-    <title>Sports & News Hub</title>
+    <title>News Hub - Latest News</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <header>
-        <h1>Sports & News Hub</h1>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="fetchNews('sports')">Sports</a></li>
-                <li><a href="#" onclick="fetchNews('world')">World News</a></li>
-                <li><a href="#" id="toggle-dark-mode">🌙 Dark Mode</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <input type="text" id="searchBar" placeholder="Search news..." onkeyup="searchNews()">
-        
-        <section id="news-container">
-            <h2>Loading latest news...</h2>
-        </section>
+<header>
+    <div class="topbar">
+        <p>March 29, 2025 | e-Paper</p>
+        <div class="auth-links">
+            <a href="#">Login</a> | <a href="#">Subscribe</a>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2025 Sports & News Hub | Powered by GitHub Pages</p>
-    </footer>
+    <div class="logo">
+        <img src="logo.png" alt="News Hub Logo">
+    </div>
 
-    <script src="script.js"></script>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="fetchNews('general')">Home</a></li>
+            <li><a href="#" onclick="fetchNews('sports')">Sports</a></li>
+            <li><a href="#" onclick="fetchNews('business')">Business</a></li>
+            <li><a href="#" onclick="fetchNews('entertainment')">Entertainment</a></li>
+            <li><a href="#" onclick="fetchNews('health')">Health</a></li>
+            <li><a href="#" onclick="fetchNews('science')">Science</a></li>
+            <li><a href="#" onclick="fetchNews('technology')">Technology</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="latest-news">
+        <h2>Latest News</h2>
+        <div id="news-container"></div>
+    </section>
+</main>
 
 </body>
 </html>
-
