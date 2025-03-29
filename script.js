@@ -1,41 +1,25 @@
-async function fetchNews(category = "sports") {
-    let url = category === "world" 
-        ? "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en"
-        : "https://news.google.com/rss/search?q=sports&hl=en-US&gl=US&ceid=US:en";
+const API_KEY = 'e92eb18c4d3e4bb5843e5305bf49fe17';
+const BASE_URL = 'https://newsapi.org/v2/top-headlines?country=in&apiKey=' + API_KEY;
 
-    let response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${url}`);
-    let data = await response.json();
+async function fetchNews(category) {
+    const url = BASE_URL + `&category=${category}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const newsContainer = document.getElementById("news-container");
 
-    let newsHTML = `<h2>Latest ${category === "world" ? "World News" : "Sports News"}</h2>`;
-    data.items.forEach(article => {
-        newsHTML += `<div class="news-item">
-            <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
-            <p>${article.pubDate}</p>
-        </div>`;
-    });
+    newsContainer.innerHTML = ""; 
 
-    document.getElementById("news-container").innerHTML = newsHTML;
-}
-
-// 🔍 Search News Function
-function searchNews() {
-    let input = document.getElementById("searchBar").value.toLowerCase();
-    let articles = document.querySelectorAll(".news-item");
-
-    articles.forEach(article => {
-        let title = article.innerText.toLowerCase();
-        if (title.includes(input)) {
-            article.style.display = "block";
-        } else {
-            article.style.display = "none";
-        }
+    data.articles.forEach(article => {
+        const newsItem = document.createElement("div");
+        newsItem.classList.add("news-article");
+        newsItem.innerHTML = `
+            <h3>${article.title}</h3>
+            <p>${article.description}</p>
+            <a href="${article.url}" target="_blank">Read More</a>
+        `;
+        newsContainer.appendChild(newsItem);
     });
 }
 
-// 🌙 Dark Mode Toggle
-document.getElementById("toggle-dark-mode").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-
-// Load default sports news
-fetchNews();
+// Load default category on page load
+fetchNews('general');
